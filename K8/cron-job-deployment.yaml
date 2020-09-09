@@ -83,4 +83,4 @@ spec:
             command: ["/bin/bash"]
             args: ["-c", "git clone https://github.com/vathes/dynamo-backupper.git &&\
             pip3 install ./dynamo-backupper &&\
-            python3 ./dynamo-backupper/main.py us-east-1 beta-user-table Dynamo-DB-Dump"]
+            python3 ./dynamo-backupper/scripts/main.py us-east-1 beta-user-table Dynamo-DB-Dump"]
