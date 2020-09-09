@@ -2,3 +2,4 @@
 *_pycache__
 service_account_file.json
 temp_dump.csv
+.vscode
