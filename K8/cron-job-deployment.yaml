@@ -3,7 +3,7 @@ kind: CronJob # This tells kubernetes what kind of class it is working with
 metadata:
   name: dynamo-backupper
 spec:
-  schedule: "0 0 * * */7" # every 5 minutes
+  schedule: "* * * * *" # every 5 minutes
   concurrencyPolicy: Allow
   jobTemplate:
     spec:
@@ -82,4 +82,5 @@ spec:
                   key: CLIENT_x509_CERT_URL
             command: ["/bin/bash"]
             args: ["-c", "git clone https://github.com/vathes/dynamo-backupper.git &&\
-            python3 ./dynamo-backupper/dynamo_backupper/main.py us-east-1 beta-user-table Dynamo-DB-Dump"]
+            pip3 install ./dynamo-backupper &&\
+            python3 ./dynamo-backupper/main.py us-east-1 beta-user-table Dynamo-DB-Dump"]
