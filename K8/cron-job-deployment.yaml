@@ -15,10 +15,9 @@ spec:
           - name: dynamo-backupper
             image: synicix/dynamo-backupper:latest
             resources:
-              requests:
-                cpu: 1
-                memory: 2Gi
-                ephemeral-storage: 2Mi
+              limits:
+                cpu: 100m
+                memory: 100M
             env:
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
@@ -80,7 +79,20 @@ spec:
                 secretKeyRef:
                   name: google-api-credentials
                   key: CLIENT_x509_CERT_URL
+            - name: REGION
+              valueFrom:
+                secretKeyRef:
+                  name: dynamo-backupper-params
+                  key: REGION
+            - name: TABLE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: dynamo-backupper-params
+                  key: TABLE_NAME
+            - name: FOLDER_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: dynamo-backupper-params
+                  key: FOLDER_NAME
             command: ["/bin/bash"]
-            args: ["-c", "git clone https://github.com/vathes/dynamo-backupper.git &&\
-            pip3 install ./dynamo-backupper &&\
-            python3 ./dynamo-backupper/scripts/main.py us-east-1 beta-user-table Dynamo-DB-Dump"]
+            args: ["-c", "python3 ./scripts/main.py $REGION $TABLE_NAME $FOLDER_NAME"]
