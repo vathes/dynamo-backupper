@@ -1,9 +1,8 @@
-FROM ubuntu:20.04
+FROM python:slim-buster
 
-RUN apt-get update
-RUN apt-get install -y python3-pip 
-RUN apt-get install -y git
+RUN pip3 install pandas boto3 google-api-python-client google-auth-httplib2
 
-RUN pip3 install pandas boto3 google-api-python-client google-auth-httplib2 google-auth-oauthlib
+COPY ./ /src
+RUN pip3 install /src
 
 WORKDIR /src
