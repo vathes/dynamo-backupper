@@ -11,5 +11,5 @@ setup(
     author_email='synicix@gmail.com',
     url='https://github.com/vathes/dynamo-backupper',
     packages=find_packages(),
-    install_requires=['pandas', 'boto3', 'google-api-python-client', 'google-auth-httplib2', 'google-auth-oauthlib'],
+    install_requires=['pandas', 'boto3', 'google-api-python-client', 'google-auth-httplib2']
 )
