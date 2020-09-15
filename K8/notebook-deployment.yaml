@@ -79,6 +79,21 @@ spec:
         secretKeyRef:
           name: google-api-credentials
           key: CLIENT_x509_CERT_URL
+    - name: REGION
+      valueFrom:
+        secretKeyRef:
+          name: dynamo-backupper-params
+          key: REGION
+    - name: TABLE_NAME
+      valueFrom:
+        secretKeyRef:
+          name: dynamo-backupper-params
+          key: TABLE_NAME
+    - name: FOLDER_NAME
+      valueFrom:
+        secretKeyRef:
+          name: dynamo-backupper-params
+          key: FOLDER_NAME
     - name: GITHUB_PASSWORD
       valueFrom:
         secretKeyRef:
