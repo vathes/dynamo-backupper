@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  dynamo-backupper:
+    env_file:
+      - .env
+    build: .
+    volumes:
+      - ./:/src
+    command: python3 ./scripts/main.py $REGION $TABLE_NAME $FOLDER_NAME
