@@ -1,8 +1,7 @@
 version: "3.8"
 services:
   dynamo-backupper:
-    env_file:
-      - .env
+    env_file: .env
     build: .
     volumes:
       - ./:/src
