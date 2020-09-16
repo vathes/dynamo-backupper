@@ -28,9 +28,10 @@ class GoogleAPIAdapter:
 
     def find_folder_id(self, folder_name):
         # Query files
-        files = self.google_drive_api.files().list(pageSize=10, fields="nextPageToken, files(id, name)").execute()
+        files = self.google_drive_api.files().list(pageSize=100, fields="nextPageToken, files(id, name)").execute()
         folder_id = folder_name
         for file in files['files']:
+            print(file['name'])
             if file['name'] == folder_name:
                 return file['id']
 
