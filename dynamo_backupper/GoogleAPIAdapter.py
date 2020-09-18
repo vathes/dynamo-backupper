@@ -31,7 +31,6 @@ class GoogleAPIAdapter:
         files = self.google_drive_api.files().list(pageSize=100, fields="nextPageToken, files(id, name)").execute()
         folder_id = folder_name
         for file in files['files']:
-            print(file['name'])
             if file['name'] == folder_name:
                 return file['id']
 
