@@ -1,3 +1,4 @@
+# This docker-compose file is strickly for development only. Actual deployment target will be K8
 version: "2.4"
 services:
   dynamo-backupper:
