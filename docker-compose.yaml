@@ -6,4 +6,4 @@ services:
     build: .
     volumes:
       - ./:/src
-    command: bash -c "pip3 install . && python3 ./scripts/main.py $REGION $TABLE_NAME $FOLDER_NAME"
+    command: bash -c "pip3 install . && python3 ./scripts/main.py"
