@@ -94,5 +94,3 @@ spec:
                 secretKeyRef:
                   name: dynamo-backupper-params
                   key: FOLDER_NAME
-            command: ["/bin/bash"]
-            args: ["-c", "python3 ./scripts/main.py"]

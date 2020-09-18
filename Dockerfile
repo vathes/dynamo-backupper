@@ -6,3 +6,5 @@ COPY ./ /src
 RUN pip3 install /src
 
 WORKDIR /src
+
+ENTRYPOINT ["python3", "./scripts/main.py"]
