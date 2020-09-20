@@ -13,7 +13,7 @@ spec:
           restartPolicy: Never
           containers:
           - name: dynamo-backupper
-            image: synicix/dynamo-backupper:latest
+            image: vathes/dynamo-backupper:latest
             resources:
               limits:
                 cpu: 100m
