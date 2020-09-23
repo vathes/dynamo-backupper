@@ -1,0 +1,86 @@
+apiVersion: batch/v1beta1
+kind: CronJob # This tells kubernetes what kind of class it is working with
+metadata:
+  name: dynamo-backupper
+spec:
+  schedule: "0 0 * * 0" # At 0:00 on every sunday
+  concurrencyPolicy: Allow
+  jobTemplate:
+    spec:
+      parallelism: 1  # how many process in parallel I want
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+          - name: dynamo-backupper
+            image: vathes/dynamo-backupper:latest
+            resources:
+              limits:
+                cpu: 100m
+                memory: 100M
+            env:
+            - name: TYPE
+              valueFrom:
+                secretKeyRef:
+                  name: google-api-credentials
+                  key: TYPE
+            - name: PROJECT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: google-api-credentials
+                  key: PROJECT_ID
+            - name: PRIVATE_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: google-api-credentials
+                  key: PRIVATE_KEY_ID
+            - name: PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: google-api-credentials
+                  key: PRIVATE_KEY
+            - name: CLIENT_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: google-api-credentials
+                  key: CLIENT_EMAIL
+            - name: CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: google-api-credentials
+                  key: CLIENT_ID
+            - name: AUTH_URI
+              valueFrom:
+                secretKeyRef:
+                  name: google-api-credentials
+                  key: AUTH_URI
+            - name: TOKEN_URI
+              valueFrom:
+                secretKeyRef:
+                  name: google-api-credentials
+                  key: TOKEN_URI
+            - name: AUTH_PROVIDER_x509_CERT_URL
+              valueFrom:
+                secretKeyRef:
+                  name: google-api-credentials
+                  key: AUTH_PROVIDER_x509_CERT_URL
+            - name: CLIENT_x509_CERT_URL
+              valueFrom:
+                secretKeyRef:
+                  name: google-api-credentials
+                  key: CLIENT_x509_CERT_URL
+            - name: REGION
+              valueFrom:
+                secretKeyRef:
+                  name: dynamo-backupper-params
+                  key: REGION
+            - name: TABLE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: dynamo-backupper-params
+                  key: TABLE_NAME
+            - name: FOLDER_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: dynamo-backupper-params
+                  key: FOLDER_NAME
