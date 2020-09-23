@@ -1,7 +1,7 @@
 # This docker-compose file is strickly for development only. Actual deployment target will be K8
 version: "2.4"
 services:
-  dynamo-backupper:
+  py-test-dynamo-backupper:
     environment: 
       - AWS_ACCESS_KEY_ID
       - AWS_SECRET_ACCESS_KEY
@@ -20,5 +20,5 @@ services:
       - FOLDER_NAME
     build: .
     volumes:
-      - ./:/src
-    command: bash -c "python3 ./scripts/main.py"
+      - ../:/src
+    command: bash -c "pip3 install . && pytest pytest/"
